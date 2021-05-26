@@ -62,18 +62,7 @@ def _preprocess_data(data):
     
 
     feature_vector_df = feature_vector_df[(feature_vector_df['Commodities'] == 'APPLE GOLDEN DELICIOUS')]
-
-    #Getting/storing day_of_week and dropping date
-    feature_vector_df['Date'] = pd.to_datetime(feature_vector_df['Date'])
-    feature_vector_df['Day']=[x.day for x in feature_vector_df['Date']]
-    feature_vector_df=feature_vector_df.drop('Date',axis=1)
-
-    #Dropping non-numeric columns
-    for x in feature_vector_df:
-        if np.issubdtype(feature_vector_df[x].dtype, np.number)==False:
-            feature_vector_df=feature_vector_df.drop(x,axis=1)
-        
-    predict_vector=feature_vector_df.copy()
+    predict_vector = feature_vector_df[['Total_Qty_Sold','Stock_On_Hand']]
                                 
     # ------------------------------------------------------------------------
 
