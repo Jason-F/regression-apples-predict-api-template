@@ -73,7 +73,10 @@ def _preprocess_data(data):
         if np.issubdtype(feature_vector_df[x].dtype, np.number)==False:
             feature_vector_df=feature_vector_df.drop(x,axis=1)
         
-    predict_vector=feature_vector_df.copy()
+    if 'avg_price_per_kg' in feature_vector_df.columns:
+        predict_vector=feature_vector_df.drop('avg_price_per_kg',axis=1)
+    else:
+        predict_vector=feature_vector_df.copy()
                                 
     # ------------------------------------------------------------------------
 
