@@ -67,9 +67,10 @@ def _preprocess_data(data):
     feature_vector_df['Date'] = pd.to_datetime(feature_vector_df['Date'])
     feature_vector_df['Day']=[x.day for x in feature_vector_df['Date']]
     feature_vector_df=feature_vector_df.drop('Date',axis=1)
+    feature_vector_df=feature_vector_df.drop('Day',axis=1)
 
     #Dropping non-numeric columns
-    for x in feature_vector_df:
+    for x in feature_vector_df.columns:
         if np.issubdtype(feature_vector_df[x].dtype, np.number)==False:
             feature_vector_df=feature_vector_df.drop(x,axis=1)
         
